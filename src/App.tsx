@@ -8,11 +8,10 @@ import Footer from './features/footer';
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      {/* El Navbar estará presente en todas las páginas */}
       <Navbar />
       
       
-      <main className="pt-20">
+      <main>
       <Routes>
         {/* Ruta para la página de inicio */}
         <Route path="/" element={<HomePage />} />
