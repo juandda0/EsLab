@@ -3,7 +3,7 @@ import heroImage from "./assets/heroestadistica.jpg";
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="w-full h-[100vh] bg-white flex items-center">
+    <section className="w-full min-h-screen bg-white flex items-center pt-24">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-6">
         
         {/* Texto */}
