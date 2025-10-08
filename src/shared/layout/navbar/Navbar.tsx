@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 
-interface SubMenuGroup {
-  groupTitle?: string;
-  items: { title: string; url: string }[];
-}
-
 interface NavLink {
   title: string;
   url: string;
   children?: SubMenuGroup[];
+}
+
+interface SubMenuGroup {
+  groupTitle?: string;
+  items: { title: string; url: string }[];
 }
 
 const navLinks: NavLink[] = [
@@ -78,11 +78,11 @@ const navLinks: NavLink[] = [
   },
 ];
 
-const MainNav: React.FC = () => {
+const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white shadow-md">
+    <header className="w-full font-sans fixed top-0 left-0 z-50 bg-white shadow-md">
       <nav className="w-full max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <a href="/" className="text-xl font-bold text-gray-800">
@@ -196,4 +196,4 @@ const MainNav: React.FC = () => {
   );
 };
 
-export default MainNav;
+export default Navbar;

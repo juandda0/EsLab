@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from './features/navBar';
+import Navbar from './shared/layout/navbar/Navbar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from './features/home/presentation/screens/HomePage';
+import HomePage from './features/homepage/presentation/screens/HomePage';
 import VisualizadorDelitos from './features/visualizadorDelitos';
-import Footer from './features/footer';
+import Footer from './shared/layout/footer/Footer';
 import EventosPage from './features/events';
 
 const App: React.FC = () => {

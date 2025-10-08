@@ -1,5 +1,5 @@
 import React from "react";
-import heroImage from "./assets/heroestadistica.jpg";
+import heroImage from "../assets/heroestadistica.jpg";
 
 const HeroSection: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const HeroSection: React.FC = () => {
       style={{ backgroundImage: `url(${heroImage})` }}
     >
 
-      <div className="absolute inset-0 bg-black/50"></div>
+      <div className="absolute inset-0 bg-black/60"></div>
 
       {/* Contenido */}
       <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-6 text-white">
