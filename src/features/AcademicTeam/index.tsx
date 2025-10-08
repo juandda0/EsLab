@@ -2,8 +2,8 @@ import React from "react";
 
 const team = [
   { 
-    name: "Dr. Juan Pérez", 
-    role: "Director del laboratorio", 
+    name: "Ricardo Guzmán", 
+    role: " Jefe Departamento de Matemáticas y Estadística", 
     img: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-4.0.3&ixid=&auto=format&fit=crop&w=300&q=80" 
   },
   { 
@@ -12,8 +12,8 @@ const team = [
     img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&ixid=&auto=format&fit=crop&w=300&q=80" 
   },
   { 
-    name: "MSc. Carlos Ruiz", 
-    role: "Analista de datos", 
+    name: "Juan Diego Diaz Avendaño", 
+    role: "Asistente de sistemas", 
     img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=&auto=format&fit=crop&w=300&q=80" 
   },
 ];

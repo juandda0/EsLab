@@ -3,15 +3,21 @@ import heroImage from "./assets/heroestadistica.jpg";
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="w-full min-h-screen bg-white flex items-center pt-24">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-6">
-        
+    <section
+      className="w-full min-h-screen bg-cover bg-center flex items-center pt-24 relative"
+      style={{ backgroundImage: `url(${heroImage})` }}
+    >
+
+      <div className="absolute inset-0 bg-black/50"></div>
+
+      {/* Contenido */}
+      <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-6 text-white">
         {/* Texto */}
         <div className="space-y-6 text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+          <h1 className="font-sans text-4xl md:text-5xl font-bold leading-tight drop-shadow-lg">
             Laboratorio de Estadística <br /> y Ciencia de Datos
           </h1>
-          <p className="text-gray-600 text-lg max-w-xl mx-auto md:mx-0">
+          <p className="text-lg max-w-xl mx-auto md:mx-0 drop-shadow-md">
             Impulsamos la investigación y el análisis de datos para resolver
             problemas sociales, económicos y de seguridad, generando impacto en
             la región de Córdoba.
@@ -26,20 +32,11 @@ const HeroSection: React.FC = () => {
             </a>
             <a
               href="#learn-more"
-              className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition"
+              className="border border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white/20 transition"
             >
               Más información
             </a>
           </div>
-        </div>
-
-        {/* Imagen */}
-        <div className="flex justify-center">
-          <img
-            src={heroImage}
-            alt="Investigadores en el campo"
-            className="w-full h-[400px] md:h-[500px] object-cover rounded-xl shadow-lg"
-          />
         </div>
       </div>
     </section>

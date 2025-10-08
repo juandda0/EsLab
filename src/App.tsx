@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './features/home/presentation/screens/HomePage';
 import VisualizadorDelitos from './features/visualizadorDelitos';
 import Footer from './features/footer';
+import EventosPage from './features/events';
 
 const App: React.FC = () => {
   return (
@@ -19,7 +20,7 @@ const App: React.FC = () => {
         {/* Ruta para el nuevo visualizador */}
         <Route path="/visualizador-delitos" element={<VisualizadorDelitos />} />
         
-        {/* Puedes añadir más rutas aquí */}
+        <Route path="/eventos" element={<EventosPage />} />
       </Routes>
       </main>
       <Footer />

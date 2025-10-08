@@ -41,7 +41,12 @@ const navLinks: NavLink[] = [
     title: "Líneas de investigación",
     url: "/",
     children: [
-      { items: [{ title: "Modelos mixtos", url: "/" }, { title: "Análisis parcial", url: "/" }] },
+      {
+        items: [
+          { title: "Modelos mixtos", url: "/" },
+          { title: "Análisis parcial", url: "/" },
+        ],
+      },
     ],
   },
   {
@@ -63,7 +68,12 @@ const navLinks: NavLink[] = [
     title: "Eventos",
     url: "/eventos",
     children: [
-      { items: [{ title: "Aula Académica", url: "/" }, { title: "Cree en tí", url: "/" }] },
+      {
+        items: [
+          { title: "Aula Académica", url: "/" },
+          { title: "Cree en tí", url: "/" },
+        ],
+      },
     ],
   },
 ];
@@ -89,17 +99,20 @@ const MainNav: React.FC = () => {
               >
                 {link.title}
                 {link.children && (
-                  <ChevronDown size={16} className="text-gray-500 group-hover:rotate-180 transition-transform duration-200" />
+                  <ChevronDown
+                    size={16}
+                    className="text-gray-500 group-hover:rotate-180 transition-transform duration-200"
+                  />
                 )}
               </a>
 
               {/* Submenús */}
               {link.children && (
                 <div
-                  className="absolute left-0 top-full translate-y-1 min-w-[240px] 
+                  className="absolute left-0 top-full mt-1 min-w-[240px] 
                   bg-white shadow-lg rounded-lg opacity-0 scale-95 
                   group-hover:opacity-100 group-hover:scale-100 
-                  pointer-events-none group-hover:pointer-events-auto 
+                  group-hover:pointer-events-auto invisible group-hover:visible
                   transition-all duration-200 p-4 grid gap-4"
                 >
                   {link.children.map((group, i) => (
@@ -130,7 +143,10 @@ const MainNav: React.FC = () => {
         </ul>
 
         {/* Botón móvil */}
-        <button className="md:hidden text-gray-700" onClick={() => setMenuOpen(!menuOpen)}>
+        <button
+          className="md:hidden text-gray-700"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
@@ -140,7 +156,10 @@ const MainNav: React.FC = () => {
         <div className="md:hidden bg-white shadow-lg px-6 py-4 space-y-4">
           {navLinks.map((link) => (
             <div key={link.title}>
-              <a href={link.url} className="flex items-center justify-between text-gray-700 font-medium py-2">
+              <a
+                href={link.url}
+                className="flex items-center justify-between text-gray-700 font-medium py-2"
+              >
                 {link.title}
                 {link.children && <ChevronDown size={16} />}
               </a>
@@ -149,7 +168,9 @@ const MainNav: React.FC = () => {
                   {link.children.map((group, i) => (
                     <div key={i}>
                       {group.groupTitle && (
-                        <h4 className="text-xs font-semibold text-gray-500 uppercase">{group.groupTitle}</h4>
+                        <h4 className="text-xs font-semibold text-gray-500 uppercase">
+                          {group.groupTitle}
+                        </h4>
                       )}
                       <ul className="space-y-1">
                         {group.items.map((item) => (
