@@ -45,6 +45,8 @@ const navLinks: NavLink[] = [
         items: [
           { title: "Modelos mixtos", url: "/" },
           { title: "Análisis parcial", url: "/" },
+          { title: "Analítica de Datos", url: "/" },
+          { title: "Inteligencia Artificial", url: "/" },
         ],
       },
     ],
@@ -82,7 +84,7 @@ const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="w-full font-sans fixed top-0 left-0 z-50 bg-white shadow-md">
+    <header className="w-full font-sans sticky top-0 left-0 z-50 bg-white shadow-md">
       <nav className="w-full max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <a href="/" className="text-xl font-bold text-gray-800">

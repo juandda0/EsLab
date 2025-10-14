@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './features/homepage/presentation/screens/HomePage';
 import VisualizadorDelitos from './features/visualizadorDelitos';
 import Footer from './shared/layout/footer/Footer';
-import EventosPage from './features/events';
+import EventosPage from './features/events/EventsPage';
 
 const App: React.FC = () => {
   return (

@@ -8,4 +8,7 @@
   body {
     font-family: var(--font-sans);
   }
+  section {
+  @apply px-20;
+}
 }

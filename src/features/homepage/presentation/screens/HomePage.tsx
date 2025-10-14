@@ -7,7 +7,7 @@ import ContactSection from '../../components/ContactSection';
 
 const HomePage: React.FC = () => {
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="">
       <HeroSection />
       <MissionVision />
       <AcademicTeam />
