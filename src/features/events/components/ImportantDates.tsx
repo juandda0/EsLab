@@ -1,25 +1,12 @@
 import React from "react";
+import { useEventContext } from "../context/EventContext";
 
-const dates = [
-  {
-    label: "Full Paper Submission Deadline",
-    value: "Extended to Oct. 28, 2025",
-  },
-  { 
-    label: "Abstract Submission Deadline", 
-    value: "Extended to Oct. 28, 2025" 
-  },
-  { 
-    label: "Conference Date", 
-    value: "Nov. 21-23, 2025" 
-  },
-  { 
-    label: "Notification of Acceptance", 
-    value: "20-30 days after submission" 
-  },
-];
+export default function ImportantDates() {
+  const { eventData } = useEventContext();
+  const { visible, items } = eventData.dates;
 
-const ImportantDates: React.FC = () => {
+  if (!visible) return null;
+
   return (
     <section>
       <div className="max-w-6xl mx-auto px-6">
@@ -28,9 +15,9 @@ const ImportantDates: React.FC = () => {
         </h3>
         <div className="inline-block w-[35px] h-[6px] bg-green-600 rounded-3xl mt-4 mb-8"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {dates.map((d) => (
+          {items.map((d, index) => (
             <div
-              key={d.label}
+              key={index}
               className="bg-green-50 border border-gray-200 rounded-lg p-4 text-center"
             >
               <p className="font-semibold text-gray-700">{d.label}</p>
@@ -41,5 +28,4 @@ const ImportantDates: React.FC = () => {
       </div>
     </section>
   );
-};
-export default ImportantDates;
+}

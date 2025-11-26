@@ -4,7 +4,7 @@ import heroImage from "../assets/heroestadistica.jpg";
 const HeroSection: React.FC = () => {
   return (
     <section
-      className="w-full min-h-screen bg-cover bg-center flex items-center justify-center relative"
+      className="w-full py-30 bg-cover bg-center flex items-center justify-center relative"
       style={{ backgroundImage: `url(${heroImage})` }}
     >
 
