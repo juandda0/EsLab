@@ -1,4 +1,3 @@
-import React from "react";
 import { useEventContext } from "../context/EventContext";
 
 export default function ConferenceAgenda() {

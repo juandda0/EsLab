@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown, Menu, X, User as UserIcon, LogOut } from "lucide-react";
+import { ChevronDown, Menu, X, LogOut } from "lucide-react";
 import { useAuth } from "../../../features/auth/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 

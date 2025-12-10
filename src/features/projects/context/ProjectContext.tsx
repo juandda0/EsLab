@@ -12,7 +12,12 @@ export interface Project {
 
 interface ProjectContextType {
   projects: Project[];
-  addProject: (title: string, description: string, author: string) => void;
+  addProject: (
+    title: string,
+    description: string,
+    author: string,
+    file: File
+  ) => void;
   assignProject: (projectId: string, supervisorName: string) => void;
   updateProjectStatus: (projectId: string, status: Project["status"]) => void;
 }
@@ -32,18 +37,19 @@ export const ProjectProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }
   ]);
 
-  const addProject = (title: string, description: string, author: string) => {
-    const newProject: Project = {
-      id: Math.random().toString(36).substr(2, 9),
-      title,
-      description,
-      author,
-      status: "Pendiente",
-      assignedTo: null,
-      fileUrl: "archivo_subido.pdf"
-    };
-    setProjects([...projects, newProject]);
+  const addProject = (title: string, description: string, author: string, file: File) => {
+  const newProject: Project = {
+    id: Math.random().toString(36).substr(2, 9),
+    title,
+    description,
+    author,
+    status: "Pendiente",
+    assignedTo: null,
+    fileUrl: URL.createObjectURL(file) 
   };
+
+  setProjects([...projects, newProject]);
+};
 
   const assignProject = (projectId: string, supervisorName: string) => {
     setProjects(prev => prev.map(p => 
