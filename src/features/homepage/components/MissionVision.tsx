@@ -1,5 +1,4 @@
 import React from "react";
-import { Target, Eye } from "lucide-react";
 
 const MissionVision: React.FC = () => {
   return (
