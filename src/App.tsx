@@ -33,7 +33,7 @@ const App: React.FC = () => {
             <BrowserRouter>
             <Navbar />
 
-            <main className="min-h-screen bg-gray-50">
+            <main className="min-h-screen bg-[#f5f5f7]">
                 <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />

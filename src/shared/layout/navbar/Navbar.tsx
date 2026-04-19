@@ -127,15 +127,15 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="w-full font-sans sticky top-0 left-0 z-[1001] bg-white shadow-md">
-      <nav className="w-full max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <header className="w-full font-sans sticky top-0 left-0 z-[1001] bg-white/80 backdrop-blur-md border-b border-[#d2d2d7]/30">
+      <nav className="w-full max-w-[1440px] mx-auto flex items-center justify-between px-8 py-5">
         {/* Logo */}
-        <a href="/" className="text-xl font-bold text-gray-800">
+        <a href="/" className="text-2xl font-bold tracking-tighter text-[#1d1d1f] hover:opacity-80 transition-opacity">
           EstLab
         </a>
 
         {/* Desktop Links */}
-        <ul className="hidden lg:flex items-center space-x-6">
+        <ul className="hidden lg:flex items-center space-x-2">
           {navLinks.map((link) => {
             // Filtrar por rol si es necesario
             if (link.role && (!user || !link.role.includes(user.role))) return null;
@@ -144,40 +144,34 @@ export default function Navbar() {
               <li key={link.title} className="relative group">
                 <a
                   href={link.url}
-                  className="flex items-center gap-1 text-sm font-medium text-gray-700 px-3 py-2 rounded-md hover:bg-gray-100 hover:text-black transition-colors duration-200"
+                  className="flex items-center text-[15px] font-bold text-[#1d1d1f] px-6 py-2.5 rounded-lg hover:bg-[#f5f5f7] transition-all duration-200"
                 >
                   {link.title}
-                  {link.children && (
-                    <ChevronDown
-                      size={16}
-                      className="text-gray-500 group-hover:rotate-180 transition-transform duration-200"
-                    />
-                  )}
                 </a>
 
-                {/* Submenús */}
+                {/* Submenús - Estilo Editorial Dropdown */}
                 {link.children && (
                   <div
-                    className="absolute left-0 top-full mt-1 min-w-[240px] 
-                    bg-white shadow-lg rounded-lg opacity-0 scale-95 
+                    className="absolute left-0 top-full mt-1 min-w-[280px] 
+                    bg-white shadow-2xl rounded-xl opacity-0 scale-95 
                     group-hover:opacity-100 group-hover:scale-100 
                     group-hover:pointer-events-auto invisible group-hover:visible
-                    transition-all duration-200 p-4 grid gap-4 z-50 border border-gray-100"
+                    transition-all duration-300 p-8 grid gap-8 z-50 border border-[#d2d2d7]/30"
                   >
                     {link.children.map((group, i) => (
                       <div key={i}>
                         {group.groupTitle && (
-                          <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2">
+                          <h4 className="text-[11px] font-bold text-[#86868b] uppercase tracking-[0.15em] mb-4 border-b border-[#f5f5f7] pb-1">
                             {group.groupTitle}
                           </h4>
                         )}
-                        <ul className="space-y-1">
+                        <ul className="space-y-2">
                           {group.items.map((item) => (
                             <li key={item.title}>
                               <a
                                 href={item.url}
                                 download={item.download ? true : undefined}
-                                className="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-black rounded-md"
+                                className="block px-2 py-2 text-[14px] text-[#424245] hover:text-[#16a34a] transition-colors"
                               >
                                 {item.title}
                               </a>
@@ -199,24 +193,21 @@ export default function Navbar() {
             <div className="relative" ref={profileRef}>
               <button
                 onClick={() => setProfileOpen(!profileOpen)}
-                className="w-10 h-10 rounded-full bg-green-600 text-white flex items-center justify-center font-bold shadow-sm hover:bg-green-700 transition focus:outline-none ring-2 ring-offset-2 ring-transparent hover:ring-green-200"
+                className="w-10 h-10 rounded-lg bg-[#16a34a] text-white flex items-center justify-center text-[14px] font-bold shadow-sm hover:bg-[#15803d] transition-all focus:outline-none"
               >
-                {/* Iniciales del usuario */}
                 {user.username.charAt(0).toUpperCase()}
               </button>
 
-              {/* Menú desplegable del perfil */}
               {profileOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl py-2 border border-gray-100 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                  <div className="px-4 py-3 border-b border-gray-100 mb-2">
-                    <p className="text-sm font-medium text-gray-900">Hola, {user.username}</p>
-                    <p className="text-xs text-gray-500 capitalize">{user.role}</p>
+                <div className="absolute right-0 mt-3 w-64 bg-white rounded-xl shadow-2xl py-5 border border-[#d2d2d7]/30 z-50 animate-in fade-in slide-in-from-top-3 duration-300">
+                  <div className="px-6 py-4 border-b border-[#f5f5f7] mb-2">
+                    <p className="text-sm font-bold text-[#1d1d1f]">Hola, {user.username}</p>
+                    <p className="text-[10px] text-[#86868b] uppercase tracking-wider font-semibold mt-0.5">{user.role}</p>
                   </div>
                   <button
                     onClick={handleLogoutClick}
-                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2 transition-colors"
+                    className="w-full text-left px-6 py-3 text-[14px] text-[#ff3b30] hover:bg-[#ff3b30]/5 transition-colors font-semibold"
                   >
-                    <LogOut size={16} />
                     Cerrar sesión
                   </button>
                 </div>
@@ -225,7 +216,7 @@ export default function Navbar() {
           ) : (
             <button
               onClick={handleLoginClick}
-              className="bg-green-600 text-white px-5 py-2 rounded-full font-medium hover:bg-green-700 transition shadow-sm"
+              className="bg-[#16a34a] text-white px-6 py-2.5 rounded-lg text-[15px] font-bold hover:bg-[#15803d] transition-all shadow-lg active:scale-95"
             >
               Iniciar sesión
             </button>
@@ -267,10 +258,9 @@ export default function Navbar() {
                 <div key={link.title}>
                   <a
                     href={link.url}
-                    className="flex items-center justify-between text-gray-700 font-medium py-2 text-lg"
+                    className="flex items-center justify-between text-[#1d1d1f] font-semibold py-2 text-lg"
                   >
                     {link.title}
-                    {link.children && <ChevronDown size={20} />}
                   </a>
                   {link.children && (
                     <div className="ml-4 mt-2 space-y-3 border-l-2 border-gray-100 pl-4">
@@ -308,9 +298,8 @@ export default function Navbar() {
             {user ? (
               <button
                 onClick={handleLogoutClick}
-                className="w-full bg-red-50 text-red-600 font-medium px-4 py-3 rounded-lg hover:bg-red-100 transition flex items-center justify-center gap-2"
+                className="w-full bg-[#ff3b30]/10 text-[#ff3b30] font-bold px-4 py-3 rounded-xl hover:bg-[#ff3b30]/20 transition flex items-center justify-center gap-2"
               >
-                <LogOut size={20} />
                 Cerrar sesión
               </button>
             ) : (
