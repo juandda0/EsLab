@@ -12,7 +12,7 @@ interface NavLink {
 
 interface SubMenuGroup {
   groupTitle?: string;
-  items: { title: string; url: string }[];
+  items: { title: string; url: string; download?: boolean }[];
 }
 
 const navLinks: NavLink[] = [
@@ -32,7 +32,7 @@ const navLinks: NavLink[] = [
       {
         groupTitle: "Mapas geoespaciales",
         items: [
-          { title: "Córdoba", url: "/" },
+          { title: "Córdoba", url: "/visualizador/cordoba" },
           { title: "Municipios", url: "/" },
           { title: "Subregiones", url: "/" },
         ],
@@ -176,6 +176,7 @@ export default function Navbar() {
                             <li key={item.title}>
                               <a
                                 href={item.url}
+                                download={item.download ? true : undefined}
                                 className="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-black rounded-md"
                               >
                                 {item.title}
@@ -285,6 +286,7 @@ export default function Navbar() {
                               <li key={item.title}>
                                 <a
                                   href={item.url}
+                                  download={item.download ? true : undefined}
                                   className="block text-gray-600 hover:text-green-600 transition-colors"
                                 >
                                   {item.title}

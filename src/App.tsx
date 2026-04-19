@@ -3,6 +3,7 @@ import Navbar from "./shared/layout/navbar/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./features/homepage/presentation/screens/HomePage";
 import VisualizadorDelitos from "./features/visualizadorDelitos";
+import CordobaView from "./features/visualizadorMapas/CordobaView";
 import Footer from "./shared/layout/footer/Footer";
 import EventosPage from "./features/events/EventsPage";
 import { useAuth } from "./features/auth/hooks/useAuth";
@@ -37,6 +38,7 @@ const App: React.FC = () => {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/visualizador-delitos" element={<VisualizadorDelitos />} />
+                <Route path="/visualizador/cordoba" element={<CordobaView />} />
                 
                 <Route path="/eventos" element={<EventosPage />} />
 
