@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { MapContainer, TileLayer, GeoJSON, Tooltip } from 'react-leaflet';
-import { FaMapMarkedAlt, FaDownload, FaFilter } from 'react-icons/fa';
+import React, { useState, useMemo } from 'react';
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import {
   municipiosCordoba,
@@ -134,15 +133,15 @@ const CordobaView: React.FC = () => {
             style={{
               padding: '0.6rem 1.2rem',
               borderRadius: '20px',
-              backgroundColor: '#0071e3',
+              backgroundColor: '#16a34a',
               color: '#ffffff',
               textDecoration: 'none',
               fontWeight: 600,
               fontSize: '0.9rem',
               transition: 'background-color 0.2s',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#0077ed'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#0071e3'; }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#15803d'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#16a34a'; }}
           >
             Descargar Datos
           </a>
@@ -162,7 +161,7 @@ const CordobaView: React.FC = () => {
             { label: `Total ${categoria}`, value: formatNumber(totalValor) },
             { label: 'Máximo Histórico', value: municipioMax?.nombre ?? '-' },
             { label: 'Frecuencia', value: 'Anual' },
-          ].map((stat, i) => (
+          ].map((stat) => (
             <div
               key={stat.label}
               style={{
@@ -229,7 +228,7 @@ const CordobaView: React.FC = () => {
               backgroundColor: '#ffffff',
               fontSize: '0.9rem',
               width: '280px',
-              outlineColor: '#0071e3',
+              outlineColor: '#16a34a',
             }}
           />
         </div>
@@ -364,7 +363,7 @@ const CordobaView: React.FC = () => {
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.6rem' }}>
                         <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{mun.nombre}</span>
-                        <span style={{ fontWeight: 700, fontSize: '1rem', color: isHovered ? '#0071e3' : '#1d1d1f' }}>
+                        <span style={{ fontWeight: 700, fontSize: '1rem', color: isHovered ? '#16a34a' : '#1d1d1f' }}>
                           {formatNumber(valor)}
                         </span>
                       </div>

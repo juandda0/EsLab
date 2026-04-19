@@ -127,7 +127,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="w-full font-sans sticky top-0 left-0 z-50 bg-white shadow-md">
+    <header className="w-full font-sans sticky top-0 left-0 z-[1001] bg-white shadow-md">
       <nav className="w-full max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <a href="/" className="text-xl font-bold text-gray-800">
