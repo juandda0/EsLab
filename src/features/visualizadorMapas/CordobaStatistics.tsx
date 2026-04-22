@@ -21,7 +21,7 @@ interface Props {
 
 const CordobaStatistics: React.FC<Props> = ({ categoria, color }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [filters, _setFilters] = useState({
+  const [_filters, _setFilters] = useState({
     year: '2024',
     sexo: 'Todas',
     cursoVida: 'Todas',

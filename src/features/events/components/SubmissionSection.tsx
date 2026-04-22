@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../auth/hooks/useAuth";
 import { useProjects } from "../../projects/context/ProjectContext";
 import { useNavigate } from "react-router-dom";
-import { Lock, Send, UploadCloud } from "lucide-react";
+import { Lock, UploadCloud } from "lucide-react";
 
 const SubmissionSection: React.FC = () => {
   const { user } = useAuth();
