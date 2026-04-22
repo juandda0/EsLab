@@ -23,24 +23,26 @@ const team = [
 
 const AcademicTeam: React.FC = () => {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-start mb-20 gap-6">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-[#1d1d1f] max-w-sm leading-tight">
-            Nuestro Equipo Académico
-          </h2>
-          <p className="text-xl text-[#86868b] font-medium max-w-xs">
-            Excelencia investigativa y compromiso institucional en cada proyecto.
-          </p>
+    <section className="min-h-screen py-16 bg-white flex flex-col justify-center">
+      <div className="max-w-6xl mx-auto px-6 w-full">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+          <div className="space-y-2">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-[#1d1d1f] leading-tight">
+              Nuestro Equipo Académico
+            </h2>
+            <p className="text-lg text-[#86868b] font-medium">
+              Excelencia investigativa y compromiso institucional.
+            </p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {team.map((member) => (
             <div
               key={member.name}
               className="group flex flex-col"
             >
-              <div className="relative mb-8 overflow-hidden rounded-2xl aspect-[4/5]">
+              <div className="relative mb-6 overflow-hidden rounded-2xl aspect-[3/4]">
                 <img
                   src={member.img}
                   alt={member.name}
@@ -49,11 +51,11 @@ const AcademicTeam: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
               
-              <h3 className="text-2xl font-bold text-[#1d1d1f] tracking-tight mb-2 group-hover:text-[#16a34a] transition-colors duration-300">
+              <h3 className="text-xl font-bold text-[#1d1d1f] tracking-tight mb-1 group-hover:text-[#16a34a] transition-colors duration-300">
                 {member.name}
               </h3>
-              <div className="h-[1px] w-8 bg-[#16a34a] mb-3 transition-all duration-300 group-hover:w-full"></div>
-              <p className="text-[#86868b] font-medium text-lg leading-tight uppercase tracking-tight text-sm">
+              <div className="h-[1px] w-6 bg-[#16a34a] mb-2 transition-all duration-300 group-hover:w-full"></div>
+              <p className="text-[#86868b] font-bold text-[10px] uppercase tracking-widest">
                 {member.role}
               </p>
             </div>
