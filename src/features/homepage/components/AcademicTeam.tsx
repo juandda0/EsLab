@@ -1,16 +1,16 @@
 import React from "react";
-import teonilaPhoto from "../../../assets/Teonila Aguilar Gimenez.jpg";
+import teonilaPhoto from "../../../assets/Teonila Aguilar Jimenez.jpg";
 import jairoPhoto from "../../../assets/Jairo Arturo Angel Guzman.jpg";
 import juanDiegoPhoto from "../../../assets/Juan Diego Diaz Avendaño.webp";
 
 const team = [
   { 
-    name: "Teonila Aguilar Gimenez", 
+    name: "Teonila Aguilar Jimenez", 
     role: "Jefe Departamento de Geografía y Medio Ambiente", 
     img: teonilaPhoto 
   },
   { 
-    name: "Jairo Arturo Angel Guzman", 
+    name: "Jairo Arturo Angel Guzmán", 
     role: "Investigador Principal", 
     img: jairoPhoto 
   },
