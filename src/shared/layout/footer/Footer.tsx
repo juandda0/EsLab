@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
               <li>Universidad de Córdoba</li>
               <li>Carrera 6 No. 76-103</li>
               <li>Montería, Colombia</li>
-              <li className="pt-2 text-[#16a34a]">dmatematicas@correo.unicordoba.edu.co</li>
+              <li className="pt-2 text-[#16a34a]">dptogeografia@correo.unicordoba.edu.co</li>
             </ul>
           </div>
 
@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
 
         <div className="pt-8 border-t border-[#d2d2d7]/30 flex flex-col md:flex-row justify-between items-center gap-4 text-[12px] font-medium uppercase tracking-tight">
           <p>
-            &copy; {new Date().getFullYear()} Laboratorio de Análisis Geoespacial y Geografía — Universidad de Córdoba.
+            &copy; {new Date().getFullYear()} Laboratorio de Análisis Geoespacial y Ciencia de Datos, Universidad de Córdoba.
           </p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-[#1d1d1f] transition-colors">Privacidad</a>
