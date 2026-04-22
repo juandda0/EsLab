@@ -1,11 +1,11 @@
 import React from "react";
 
 const areas = [
-  "Salud pública y epidemiología",
-  "Economía regional",
-  "Seguridad ciudadana",
-  "Tecnologías de información",
-  "Educación y sociedad",
+  "Estadística Espacial y Geoestadística",
+  "Modelación Predictiva Geoespacial (GeoAI)",
+  "Análisis Urbano y Territorial",
+  "Ambiente, Sostenibilidad y Cambio Climático",
+  "Big Data Geoespacial y Sistemas de Información",
 ];
 
 const InterestAreas: React.FC = () => {
