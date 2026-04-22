@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
           
           <div className="md:col-span-1">
             <h3 className="text-lg font-bold text-[#1d1d1f] mb-6 tracking-tight">
-              LAGeo
+              GeoLab
             </h3>
             <p className="text-[13px] leading-relaxed font-medium">
               Laboratorio de Análisis Geoespacial y Ciencia de Datos de la Universidad de Córdoba. Investigación impulsada por datos para el progreso regional.

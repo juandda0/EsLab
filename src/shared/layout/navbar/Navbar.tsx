@@ -131,7 +131,7 @@ export default function Navbar() {
       <nav className="w-full max-w-[1440px] mx-auto flex items-center justify-between px-8 py-5">
         {/* Logo */}
         <a href="/" className="text-2xl font-bold tracking-tighter text-[#1d1d1f] hover:opacity-80 transition-opacity">
-          LAGeo
+          GeoLab
         </a>
 
         {/* Desktop Links */}

@@ -334,7 +334,7 @@ const CordobaView: React.FC = () => {
 
         <div className="mt-12 text-center">
           <p className="text-[#86868b] text-xs font-medium">
-            © {new Date().getFullYear()} LAGeo — Departamento de Córdoba, Colombia. Todos los derechos reservados.
+            © {new Date().getFullYear()} GeoLab — Departamento de Córdoba, Colombia. Todos los derechos reservados.
           </p>
         </div>
       </div>

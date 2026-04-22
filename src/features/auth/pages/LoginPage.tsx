@@ -26,7 +26,7 @@ export default function LoginPage() {
             Inicia Sesión
           </h1>
           <p className="text-[#86868b] text-lg font-medium leading-tight">
-            Accede al ecosistema digital <br /> de LAGeo Córdoba.
+            Accede al ecosistema digital <br /> de GeoLab Córdoba.
           </p>
         </div>
 

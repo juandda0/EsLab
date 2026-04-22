@@ -89,7 +89,7 @@ const CordobaStatistics: React.FC<Props> = ({ categoria, color }) => {
           ))}
         </div>
         <div className="flex flex-col items-center justify-center border-l border-white/10 pl-10 hidden lg:flex">
-          <div className="text-white text-3xl font-bold tracking-tighter">LAGeo</div>
+          <div className="text-white text-3xl font-bold tracking-tighter">GeoLab</div>
           <div className="text-white/30 text-[9px] uppercase font-black tracking-[0.3em] mt-1">OBSERVATORIO</div>
         </div>
       </div>
