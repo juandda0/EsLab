@@ -10,6 +10,7 @@ import {
 import mapaCordobaExcel from '../../assets/MAPA DE CORDOBA_USANDO MACROS.xlsx';
 import municipiosColombiaGeoJson from '../../assets/municipios_colombia.json';
 
+
 // Fix leaflet icons in Vite
 import L from 'leaflet';
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -33,6 +34,14 @@ function interpolateColor(color1: string, color2: string, factor: number): strin
   return `rgb(${r}, ${g}, ${b})`;
 }
 
+const databases = [
+  { id: 'excel', name: 'Excel (Muestra Actual)', source: 'Archivo local' },
+  { id: 'siedco', name: 'SIEDCO (Policía Nacional)', source: 'Portal de Datos' },
+  { id: 'forensis', name: 'Forensis (Medicina Legal)', source: 'API Institucional' },
+  { id: 'ins', name: 'Instituto Nacional de Salud', source: 'SIVIGILA' },
+  { id: 'dane', name: 'DANE (Censo Nacional)', source: 'Microdatos' },
+];
+
 const CORDOBA_CENTER: [number, number] = [8.4, -75.7];
 const CORDOBA_ZOOM = 8;
 
@@ -40,6 +49,16 @@ const CordobaView: React.FC = () => {
   const [categoria, setCategoria] = useState<Categoria>('Víctimas');
   const [searchTerm, setSearchTerm] = useState('');
   const [hoveredMunicipio, setHoveredMunicipio] = useState<string | null>(null);
+  const [dbSource, setDbSource] = useState(databases[0].id);
+  const [isSyncing, setIsSyncing] = useState(false);
+
+  // Simular sincronización al cambiar de base de datos
+  const handleDbChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newDb = e.target.value;
+    setIsSyncing(true);
+    setDbSource(newDb);
+    setTimeout(() => setIsSyncing(false), 800);
+  };
 
   // Filtrar el GeoJSON para tener solo los municipios de Córdoba (DPTO_CCDGO === '23')
   const cordobaMunicipiosGeoJson = useMemo(() => {
@@ -97,65 +116,65 @@ const CordobaView: React.FC = () => {
   };
 
   return (
-    <section
-      style={{
-        minHeight: '100vh',
-        backgroundColor: '#f5f5f7',
-        padding: '3rem 0',
-        color: '#1d1d1f',
-      }}
-    >
-      <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 2rem' }}>
+    <section className="min-h-screen bg-[#f5f5f7] py-12 text-[#1d1d1f]">
+      {/* Indicador de sincronización */}
+      {isSyncing && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[2000] bg-white/90 backdrop-blur-lg px-6 py-2 rounded-full shadow-2xl border border-gray-100 flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="w-2 h-2 bg-[#16a34a] rounded-full animate-ping"></div>
+          <span className="text-[10px] font-bold text-[#1d1d1f] uppercase tracking-widest">Sincronizando Datos...</span>
+        </div>
+      )}
+
+      <div className="max-w-[1440px] mx-auto px-6 md:px-8">
 
         {/* ── HEADER ── */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-            marginBottom: '2.5rem',
-            borderBottom: '1px solid #d2d2d7',
-            paddingBottom: '1.5rem',
-          }}
-        >
-          <div>
-            <h1 style={{ fontSize: '2.5rem', fontWeight: 700, margin: 0, letterSpacing: '-0.02em' }}>
-              Córdoba
-            </h1>
-            <p style={{ color: '#86868b', margin: '0.5rem 0 0', fontSize: '1.1rem', fontWeight: 500 }}>
-              Análisis Estadístico Territorial
-            </p>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 pb-6 border-b border-[#d2d2d7] gap-6">
+          <div className="space-y-4">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tighter margin-0">
+                Córdoba
+              </h1>
+              <p className="text-[#86868b] mt-2 text-lg font-medium">
+                Análisis Geoespacial Territorial
+              </p>
+            </div>
+            
+            <div className="space-y-1.5 pt-2">
+              <label className="text-[10px] font-bold text-[#86868b] uppercase tracking-[0.2em] ml-1">Base de Datos Actual</label>
+              <div className="relative group max-w-sm">
+                <select 
+                  value={dbSource}
+                  onChange={handleDbChange}
+                  className="w-full bg-white border border-[#d2d2d7] text-[#1d1d1f] rounded-xl pl-4 pr-10 py-3 text-sm font-bold outline-none focus:ring-2 focus:ring-[#16a34a]/20 focus:border-[#16a34a] appearance-none cursor-pointer hover:bg-gray-50 transition-all"
+                >
+                  {databases.map(db => (
+                    <option key={db.id} value={db.id}>{db.name}</option>
+                  ))}
+                </select>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#86868b]">
+                  <span className="text-xs">↓</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <a
-            href={mapaCordobaExcel}
-            download
-            style={{
-              padding: '0.6rem 1.2rem',
-              borderRadius: '20px',
-              backgroundColor: '#16a34a',
-              color: '#ffffff',
-              textDecoration: 'none',
-              fontWeight: 600,
-              fontSize: '0.9rem',
-              transition: 'background-color 0.2s',
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#15803d'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#16a34a'; }}
-          >
-            Descargar Datos
-          </a>
+          <div className="flex items-center gap-4">
+            <div className="text-right hidden sm:block">
+              <div className="text-[9px] font-black text-[#86868b] uppercase tracking-widest">Estado del Origen</div>
+              <div className="text-[11px] font-bold text-[#16a34a]">Archivo Excel Conectado</div>
+            </div>
+            <a
+              href={mapaCordobaExcel}
+              download
+              className="bg-[#16a34a] text-white px-8 py-3 rounded-xl font-bold text-sm hover:bg-[#15803d] transition-all shadow-xl active:scale-95"
+            >
+              Descargar Datos
+            </a>
+          </div>
         </div>
 
         {/* ── STATS CARDS ── */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '1.5rem',
-            marginBottom: '2.5rem',
-          }}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {[
             { label: 'Municipios', value: 30 },
             { label: `Total ${categoria}`, value: formatNumber(totalValor) },
@@ -164,18 +183,12 @@ const CordobaView: React.FC = () => {
           ].map((stat) => (
             <div
               key={stat.label}
-              style={{
-                backgroundColor: '#ffffff',
-                borderRadius: '18px',
-                padding: '1.5rem',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                border: '1px solid #e5e7eb',
-              }}
+              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
             >
-              <div style={{ color: '#86868b', fontSize: '0.85rem', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+              <div className="text-[#86868b] text-[10px] font-bold uppercase tracking-widest mb-2">
                 {stat.label}
               </div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 700 }}>
+              <div className="text-2xl font-bold">
                 {stat.value}
               </div>
             </div>
@@ -183,33 +196,17 @@ const CordobaView: React.FC = () => {
         </div>
 
         {/* ── CONTROLS ── */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: '2rem',
-            gap: '1rem',
-            flexWrap: 'wrap',
-          }}
-        >
-          <div style={{ display: 'flex', gap: '0.5rem', backgroundColor: '#e8e8ed', padding: '0.4rem', borderRadius: '12px' }}>
+        <div className="flex flex-col lg:flex-row justify-between items-stretch lg:items-center mb-8 gap-4">
+          <div className="flex overflow-x-auto pb-2 lg:pb-0 gap-2 bg-[#e8e8ed] p-1.5 rounded-xl no-scrollbar">
             {categorias.map((cat) => (
               <button
                 key={cat.key}
                 onClick={() => setCategoria(cat.key)}
-                style={{
-                  padding: '0.5rem 1.2rem',
-                  borderRadius: '8px',
-                  border: 'none',
-                  backgroundColor: categoria === cat.key ? '#ffffff' : 'transparent',
-                  color: categoria === cat.key ? '#000000' : '#424245',
-                  boxShadow: categoria === cat.key ? '0 2px 6px rgba(0,0,0,0.1)' : 'none',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  fontSize: '0.85rem',
-                  transition: 'all 0.2s',
-                }}
+                className={`whitespace-nowrap px-6 py-2 rounded-lg text-sm font-bold transition-all ${
+                  categoria === cat.key 
+                    ? 'bg-white text-black shadow-sm' 
+                    : 'text-[#424245] hover:bg-white/50'
+                }`}
               >
                 {cat.label}
               </button>
@@ -221,123 +218,80 @@ const CordobaView: React.FC = () => {
             placeholder="Buscar municipio"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            style={{
-              padding: '0.7rem 1.2rem',
-              borderRadius: '10px',
-              border: '1px solid #d2d2d7',
-              backgroundColor: '#ffffff',
-              fontSize: '0.9rem',
-              width: '280px',
-              outlineColor: '#16a34a',
-            }}
+            className="px-6 py-3 rounded-xl border border-[#d2d2d7] bg-white text-sm w-full lg:w-72 outline-none focus:ring-2 focus:ring-[#16a34a]/20 focus:border-[#16a34a] transition-all"
           />
         </div>
 
         {/* ── MAIN CONTENT ── */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 400px',
-            gap: '2rem',
-            alignItems: 'start',
-          }}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr,360px] gap-8 items-start">
+          
           {/* MAP CONTAINER */}
-          <div
-            style={{
-              backgroundColor: '#ffffff',
-              borderRadius: '24px',
-              overflow: 'hidden',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
-              border: '1px solid #e5e7eb',
-            }}
-          >
-            <MapContainer
-              center={CORDOBA_CENTER}
-              zoom={CORDOBA_ZOOM}
-              style={{ height: '650px', width: '100%', background: '#f5f5f7' }}
-              zoomControl={false}
-            >
-              <TileLayer
-                attribution='&copy; <a href="https://carto.com/">CartoDB</a>'
-                url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
-              />
+          <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 flex flex-col h-[700px] lg:h-[800px]">
+            <div className="flex-1 w-full bg-[#f5f5f7]">
+              <MapContainer
+                center={CORDOBA_CENTER}
+                zoom={CORDOBA_ZOOM}
+                style={{ height: '100%', width: '100%' }}
+                zoomControl={false}
+              >
+                <TileLayer
+                  attribution='&copy; <a href="https://carto.com/">CartoDB</a>'
+                  url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
+                />
 
-              <GeoJSON
-                data={cordobaMunicipiosGeoJson as any}
-                style={getStyle}
-                onEachFeature={(feature, layer) => {
-                  const mpioCode = feature.properties.DPTO_CCDGO + feature.properties.MPIO_CCDGO;
-                  const municipio = municipiosCordoba.find((m) => m.codigo === mpioCode);
-                  
-                  layer.on({
-                    mouseover: () => setHoveredMunicipio(mpioCode),
-                    mouseout: () => setHoveredMunicipio(null),
-                  });
+                <GeoJSON
+                  data={cordobaMunicipiosGeoJson as any}
+                  style={getStyle}
+                  onEachFeature={(feature, layer) => {
+                    const mpioCode = feature.properties.DPTO_CCDGO + feature.properties.MPIO_CCDGO;
+                    const municipio = municipiosCordoba.find((m) => m.codigo === mpioCode);
+                    
+                    layer.on({
+                      mouseover: () => setHoveredMunicipio(mpioCode),
+                      mouseout: () => setHoveredMunicipio(null),
+                    });
 
-                  if (municipio) {
-                    layer.bindTooltip(`
-                      <div style="padding: 10px; font-family: -apple-system, sans-serif; border: none !important;">
-                        <div style="font-weight: 700; font-size: 1.1rem; color: #1d1d1f; margin-bottom: 8px;">
-                          ${municipio.nombre}
+                    if (municipio) {
+                      layer.bindTooltip(`
+                        <div style="padding: 10px; font-family: -apple-system, sans-serif; border: none !important;">
+                          <div style="font-weight: 700; font-size: 1.1rem; color: #1d1d1f; margin-bottom: 8px;">
+                            ${municipio.nombre}
+                          </div>
+                          <div style="display: grid; grid-template-columns: 1fr auto; gap: 8px; font-size: 0.9rem; color: #424245;">
+                            <span>${categoria}:</span> <strong style="color: #1d1d1f">${formatNumber(getValor(municipio, categoria))}</strong>
+                          </div>
                         </div>
-                        <div style="display: grid; grid-template-columns: 1fr auto; gap: 8px; font-size: 0.9rem; color: #424245;">
-                          <span>${categoria}:</span> <strong style="color: #1d1d1f">${formatNumber(getValor(municipio, categoria))}</strong>
-                        </div>
-                      </div>
-                    `, { sticky: true, opacity: 1, className: 'apple-tooltip' });
-                  }
-                }}
-              />
-            </MapContainer>
+                      `, { sticky: true, opacity: 1, className: 'apple-tooltip' });
+                    }
+                  }}
+                />
+              </MapContainer>
+            </div>
 
-            {/* LEGEND overlay style */}
-            <div
-              style={{
-                backgroundColor: '#ffffff',
-                padding: '1.2rem 2rem',
-                borderTop: '1px solid #f0f0f0',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '1.5rem',
-              }}
-            >
-              <span style={{ fontSize: '0.85rem', color: '#86868b', fontWeight: 600 }}>INTENSIDAD</span>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ fontSize: '0.75rem', color: '#86868b' }}>BAJA</span>
+            {/* LEGEND */}
+            <div className="bg-white p-6 border-t border-gray-50 flex flex-col sm:flex-row items-center justify-center gap-6">
+              <span className="text-[10px] font-bold text-[#86868b] uppercase tracking-widest">Intensidad</span>
+              <div className="flex items-center gap-4">
+                <span className="text-[10px] font-bold text-[#86868b]">BAJA</span>
                 <div
+                  className="w-40 md:w-60 h-2 rounded-full"
                   style={{
-                    width: '180px',
-                    height: '10px',
-                    borderRadius: '5px',
                     background: `linear-gradient(to right, #f8fafc, ${catInfo.color})`,
                   }}
                 />
-                <span style={{ fontSize: '0.75rem', color: '#86868b' }}>ALTA</span>
+                <span className="text-[10px] font-bold text-[#86868b]">ALTA</span>
               </div>
             </div>
           </div>
 
-          {/* LIST SIDEBAR */}
-          <div
-            style={{
-              backgroundColor: '#ffffff',
-              borderRadius: '24px',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
-              border: '1px solid #e5e7eb',
-              overflow: 'hidden',
-              maxHeight: '730px',
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-          >
-            <div style={{ padding: '1.5rem', borderBottom: '1px solid #f0f0f0' }}>
-              <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700 }}>Distribución</h3>
-              <p style={{ margin: '0.3rem 0 0', color: '#86868b', fontSize: '0.9rem' }}>Orden jerárquico</p>
+          {/* RIGHT SIDEBAR: LIST */}
+          <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-[550px] lg:h-[600px]">
+            <div className="p-6 border-b border-gray-50">
+              <h3 className="text-xl font-bold">Distribución</h3>
+              <p className="text-[#86868b] text-sm font-medium">Orden jerárquico</p>
             </div>
 
-            <div style={{ overflowY: 'auto', flex: 1, padding: '0 0.5rem' }}>
+            <div className="overflow-y-auto flex-1 p-2 custom-scrollbar">
               {[...filteredData]
                 .sort((a, b) => getValor(b, categoria) - getValor(a, categoria))
                 .map((mun) => {
@@ -350,30 +304,22 @@ const CordobaView: React.FC = () => {
                       key={mun.codigo}
                       onMouseEnter={() => setHoveredMunicipio(mun.codigo)}
                       onMouseLeave={() => setHoveredMunicipio(null)}
-                      style={{
-                        padding: '1.2rem 1rem',
-                        margin: '0.4rem',
-                        borderRadius: '14px',
-                        cursor: 'pointer',
-                        backgroundColor: isHovered ? '#f5f5f7' : 'transparent',
-                        transition: 'background-color 0.2s',
-                        display: 'flex',
-                        flexDirection: 'column',
-                      }}
+                      className={`p-4 m-1 rounded-2xl cursor-pointer transition-all ${
+                        isHovered ? 'bg-[#f5f5f7]' : 'bg-transparent'
+                      }`}
                     >
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.6rem' }}>
-                        <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{mun.nombre}</span>
-                        <span style={{ fontWeight: 700, fontSize: '1rem', color: isHovered ? '#16a34a' : '#1d1d1f' }}>
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="font-bold text-sm">{mun.nombre}</span>
+                        <span className={`font-bold ${isHovered ? 'text-[#16a34a]' : 'text-[#1d1d1f]'}`}>
                           {formatNumber(valor)}
                         </span>
                       </div>
-                      <div style={{ height: '6px', borderRadius: '3px', backgroundColor: '#e5e7eb', overflow: 'hidden' }}>
+                      <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
                         <div
+                          className="h-full transition-all duration-700 ease-out"
                           style={{
-                            height: '100%',
                             width: `${factor * 100}%`,
                             backgroundColor: catInfo.color,
-                            transition: 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                           }}
                         />
                       </div>
@@ -384,9 +330,11 @@ const CordobaView: React.FC = () => {
           </div>
         </div>
 
-        <div style={{ marginTop: '3rem', textAlign: 'center' }}>
-          <p style={{ color: '#86868b', fontSize: '0.85rem' }}>
-            © 2024 EstLab — Departamento de Córdoba, Colombia. Todos los derechos reservados.
+
+
+        <div className="mt-12 text-center">
+          <p className="text-[#86868b] text-xs font-medium">
+            © {new Date().getFullYear()} LAGeo — Departamento de Córdoba, Colombia. Todos los derechos reservados.
           </p>
         </div>
       </div>

@@ -13,7 +13,7 @@ const HeroSection: React.FC = () => {
       <div className="relative max-w-5xl mx-auto px-6 text-center">
         <div className="space-y-8">
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.1]">
-            Laboratorio de Estadística <br /> 
+            Laboratorio de Análisis Geoespacial <br /> 
             <span className="">y Ciencia de Datos</span>
           </h1>
           

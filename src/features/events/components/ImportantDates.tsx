@@ -7,20 +7,23 @@ export default function ImportantDates() {
   if (!visible) return null;
 
   return (
-    <section>
+    <section className="py-24 bg-[#f5f5f7]">
       <div className="max-w-6xl mx-auto px-6">
-        <h3 className="text-3xl font-semibold flex items-center">
-          Important Dates
-        </h3>
-        <div className="inline-block w-[35px] h-[6px] bg-green-600 rounded-3xl mt-4 mb-8"></div>
+        <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-6">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-[#1d1d1f]">
+            Cronograma <br /> del Evento
+          </h2>
+          <div className="h-[1px] w-20 bg-[#16a34a] mt-6 md:mt-10"></div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {items.map((d, index) => (
             <div
               key={index}
-              className="bg-green-50 border border-gray-200 rounded-lg p-4 text-center"
+              className="bg-white border border-[#d2d2d7]/30 rounded-3xl p-8 shadow-sm hover:shadow-lg transition-all"
             >
-              <p className="font-semibold text-gray-700">{d.label}</p>
-              <p className="text-green-600 font-medium">{d.value}</p>
+              <p className="text-[10px] font-bold text-[#86868b] uppercase tracking-[0.2em] mb-4">{d.label}</p>
+              <p className="text-2xl font-bold text-[#1d1d1f] tracking-tight">{d.value}</p>
             </div>
           ))}
         </div>

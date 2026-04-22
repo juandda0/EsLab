@@ -42,134 +42,106 @@ const SubmissionSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-50 border-t border-gray-200">
-      <div className="max-w-4xl mx-auto px-6">
-        {/* Encabezado de Sección */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+    <section className="py-24 bg-gradient-to-br from-[#16a34a] to-[#15803d] relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+      
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tighter text-white mb-6">
             Envío de Propuestas
           </h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-white/80 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
             Invitamos a la comunidad académica a presentar sus trabajos de
-            investigación. Por favor complete el formulario a continuación para
-            postular su ponencia.
+            investigación para postular su ponencia en el próximo encuentro.
           </p>
-          <div className="inline-block w-16 h-1 bg-green-600 rounded-full mt-6"></div>
         </div>
 
-        {/* Lógica Condicional de UI */}
         {user ? (
-          // --- ESTADO: LOGUEADO (FORMULARIO) ---
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-            <div className="bg-green-700 px-8 py-4">
-              <h3 className="text-white font-medium text-lg flex items-center gap-2">
-                <Send className="w-5 h-5" /> Formulario de Registro de Ponencia
-              </h3>
-            </div>
-
-            <form onSubmit={handleSubmit} className="p-8 space-y-6">
-              <div className="grid md:grid-cols-1 gap-6">
-                {/* Título */}
+          <div className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/20">
+            <form onSubmit={handleSubmit} className="p-10 md:p-14 space-y-8">
+              <div className="grid grid-cols-1 gap-8">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Título del Proyecto / Ponencia
+                  <label className="block text-[10px] font-black text-[#86868b] uppercase tracking-[0.2em] mb-3 ml-1">
+                    Título de la Ponencia
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="Ej. Análisis Estadístico de..."
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none bg-gray-50 focus:bg-white"
+                    placeholder="Ej. Análisis Geoespacial de la Productividad..."
+                    className="w-full px-6 py-4 rounded-2xl border border-[#d2d2d7] bg-[#f5f5f7] text-[#1d1d1f] font-bold text-lg outline-none focus:ring-2 focus:ring-[#16a34a]/20 focus:border-[#16a34a] transition-all"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                   />
                 </div>
 
-                {/* Descripción */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-[10px] font-black text-[#86868b] uppercase tracking-[0.2em] mb-3 ml-1">
                     Resumen Ejecutivo (Abstract)
                   </label>
                   <textarea
                     required
                     rows={5}
                     placeholder="Describa brevemente los objetivos y metodología..."
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none bg-gray-50 focus:bg-white resize-none"
+                    className="w-full px-6 py-4 rounded-2xl border border-[#d2d2d7] bg-[#f5f5f7] text-[#1d1d1f] font-medium text-lg outline-none focus:ring-2 focus:ring-[#16a34a]/20 focus:border-[#16a34a] transition-all resize-none"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                   />
                 </div>
 
-                {/* Carga de Archivos */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-[10px] font-black text-[#86868b] uppercase tracking-[0.2em] mb-3 ml-1">
                     Documento Adjunto (PDF/PPT)
                   </label>
-                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:bg-gray-50 transition-colors cursor-pointer relative">
-                    <div className="space-y-1 text-center">
-                      <UploadCloud className="mx-auto h-12 w-12 text-gray-400" />
-                      <div className="flex text-sm text-gray-600 justify-center">
-                        <label className="relative cursor-pointer bg-transparent rounded-md font-medium text-green-600 hover:text-green-500 focus-within:outline-none">
-                          <span>Subir un archivo</span>
-                          <input
-                            type="file"
-                            className="sr-only"
-                            accept=".pdf,.ppt,.pptx"
-                            onChange={(e) =>
-                              setFile(e.target.files ? e.target.files[0] : null)
-                            }
-                          />
-                        </label>
-                        <p className="pl-1">o arrastrar y soltar</p>
+                  <div className="group relative flex flex-col items-center justify-center p-12 border-2 border-dashed border-[#d2d2d7] rounded-3xl bg-[#f5f5f7] hover:bg-white hover:border-[#16a34a] transition-all cursor-pointer">
+                    <input
+                      type="file"
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20"
+                      accept=".pdf,.ppt,.pptx"
+                      onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
+                    />
+                    <div className="text-center group-hover:scale-105 transition-transform duration-300">
+                      <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm mx-auto mb-4">
+                        <UploadCloud className="w-8 h-8 text-[#16a34a]" />
                       </div>
-                      <p className="text-xs text-gray-500">
-                        PDF, PPT hasta 10MB
-                      </p>
-                      {file && (
-                        <p className="text-sm text-green-700 font-semibold mt-2">
-                          Archivo seleccionado: {file.name}
-                        </p>
-                      )}
+                      <div className="text-lg font-bold text-[#1d1d1f]">
+                        {file ? file.name : "Seleccionar Archivo"}
+                      </div>
+                      <p className="text-[10px] font-bold text-[#86868b] uppercase tracking-widest mt-2 px-1">PDF, PPT hasta 10MB</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Botón Submit */}
-              <div className="pt-4">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`w-full flex justify-center py-4 px-4 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all ${
-                    isSubmitting ? "opacity-75 cursor-not-allowed" : ""
-                  }`}
-                >
-                  {isSubmitting ? "Enviando..." : "Enviar Propuesta"}
-                </button>
-              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full py-5 px-6 rounded-2xl text-xl font-black text-white bg-[#1d1d1f] hover:bg-black transition-all shadow-xl active:scale-95 ${
+                  isSubmitting ? "opacity-75 cursor-not-allowed" : ""
+                }`}
+              >
+                {isSubmitting ? "Enviando Propuesta..." : "Enviar Propuesta"}
+              </button>
             </form>
           </div>
         ) : (
-          // --- ESTADO: NO LOGUEADO (CTA) ---
-          <div className="bg-white rounded-xl shadow-md border border-gray-200 p-10 text-center max-w-2xl mx-auto">
-            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Lock className="w-8 h-8 text-gray-500" />
+          <div className="bg-white rounded-[2.5rem] shadow-2xl p-12 md:p-20 text-center max-w-2xl mx-auto border border-white/20">
+            <div className="w-20 h-20 bg-[#f5f5f7] rounded-[2rem] flex items-center justify-center mx-auto mb-10 shadow-inner">
+              <Lock className="w-10 h-10 text-[#424245]" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-800 mb-3">
-              Acceso Restringido
+            <h3 className="text-3xl font-black text-[#1d1d1f] mb-6 tracking-tighter">
+                Sube tu proyecto
             </h3>
-            <p className="text-gray-600 mb-8 leading-relaxed">
-              Para garantizar la integridad del proceso de selección académica,
-              es necesario iniciar sesión en la plataforma para enviar
-              propuestas de proyectos.
+            <p className="text-[#86868b] text-xl font-medium mb-10 leading-relaxed">
+              Es necesario iniciar sesión en la plataforma para garantizar la integridad académica.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <button
                 onClick={() => navigate("/login")}
-                className="px-8 py-3 bg-green-600 text-white font-semibold rounded-lg shadow hover:bg-green-700 transition-colors"
+                className="px-10 py-5 bg-[#16a34a] text-white font-black rounded-2xl shadow-xl hover:bg-[#15803d] hover:-translate-y-1 transition-all active:scale-95 text-lg"
               >
                 Iniciar Sesión
               </button>
-              <button className="px-8 py-3 bg-white text-gray-700 border border-gray-300 font-semibold rounded-lg hover:bg-gray-50 transition-colors">
+              <button className="px-10 py-5 bg-white text-[#1d1d1f] border border-[#d2d2d7] font-black rounded-2xl hover:bg-gray-50 transition-all text-lg">
                 Más Información
               </button>
             </div>

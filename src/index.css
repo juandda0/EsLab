@@ -11,6 +11,23 @@
     -moz-osx-font-smoothing: grayscale;
   }
   section {
-  @apply px-20;
-}
+    @apply px-20;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #d2d2d7;
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #86868b;
+  }
 }

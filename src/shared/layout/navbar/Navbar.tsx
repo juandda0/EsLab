@@ -127,11 +127,11 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="w-full font-sans sticky top-0 left-0 z-[1001] bg-white/80 backdrop-blur-md border-b border-[#d2d2d7]/30">
+    <header className="w-full font-sans fixed top-0 left-0 z-[1001] bg-white/80 backdrop-blur-md border-b border-[#d2d2d7]/30">
       <nav className="w-full max-w-[1440px] mx-auto flex items-center justify-between px-8 py-5">
         {/* Logo */}
         <a href="/" className="text-2xl font-bold tracking-tighter text-[#1d1d1f] hover:opacity-80 transition-opacity">
-          EstLab
+          LAGeo
         </a>
 
         {/* Desktop Links */}
@@ -238,46 +238,46 @@ export default function Navbar() {
           
           {/* Perfil en móvil (si está logueado) */}
           {user && (
-            <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
-              <div className="w-12 h-12 rounded-full bg-green-600 text-white flex items-center justify-center font-bold text-xl">
+            <div className="flex items-center gap-4 pb-6 border-b border-[#f5f5f7]">
+              <div className="w-14 h-14 rounded-lg bg-[#16a34a] text-white flex items-center justify-center font-bold text-xl shadow-sm">
                  {user.username.charAt(0).toUpperCase()}
               </div>
               <div>
-                <p className="font-semibold text-gray-800">{user.username}</p>
-                <p className="text-xs text-gray-500 capitalize">{user.role}</p>
+                <p className="text-lg font-bold text-[#1d1d1f]">{user.username}</p>
+                <p className="text-[10px] text-[#86868b] uppercase tracking-widest font-bold">{user.role}</p>
               </div>
             </div>
           )}
 
           {/* Links Móviles */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             {navLinks.map((link) => {
                if (link.role && (!user || !link.role.includes(user.role))) return null;
 
                return (
-                <div key={link.title}>
+                <div key={link.title} className="py-2">
                   <a
                     href={link.url}
-                    className="flex items-center justify-between text-[#1d1d1f] font-semibold py-2 text-lg"
+                    className="flex items-center justify-between text-[#1d1d1f] font-bold py-2 text-xl tracking-tight"
                   >
                     {link.title}
                   </a>
                   {link.children && (
-                    <div className="ml-4 mt-2 space-y-3 border-l-2 border-gray-100 pl-4">
+                    <div className="ml-4 mt-2 space-y-4 border-l border-[#d2d2d7] pl-6 py-2">
                       {link.children.map((group, i) => (
                         <div key={i}>
                           {group.groupTitle && (
-                            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                            <h4 className="text-[10px] font-bold text-[#86868b] uppercase tracking-widest mb-3">
                               {group.groupTitle}
                             </h4>
                           )}
-                          <ul className="space-y-2">
+                          <ul className="space-y-3">
                             {group.items.map((item) => (
                               <li key={item.title}>
                                 <a
                                   href={item.url}
                                   download={item.download ? true : undefined}
-                                  className="block text-gray-600 hover:text-green-600 transition-colors"
+                                  className="block text-[#424245] hover:text-[#16a34a] transition-colors text-base font-medium"
                                 >
                                   {item.title}
                                 </a>
@@ -294,18 +294,18 @@ export default function Navbar() {
           </div>
 
           {/* Botones de acción móvil */}
-          <div className="pt-6 border-t border-gray-100">
+          <div className="pt-8 border-t border-[#f5f5f7]">
             {user ? (
               <button
                 onClick={handleLogoutClick}
-                className="w-full bg-[#ff3b30]/10 text-[#ff3b30] font-bold px-4 py-3 rounded-xl hover:bg-[#ff3b30]/20 transition flex items-center justify-center gap-2"
+                className="w-full bg-[#ff3b30]/10 text-[#ff3b30] font-bold px-4 py-4 rounded-lg hover:bg-[#ff3b30]/20 transition flex items-center justify-center"
               >
                 Cerrar sesión
               </button>
             ) : (
               <button
                 onClick={handleLoginClick}
-                className="w-full bg-green-600 text-white font-medium px-4 py-3 rounded-lg hover:bg-green-700 transition shadow"
+                className="w-full bg-[#16a34a] text-white font-bold px-4 py-4 rounded-lg hover:bg-[#15803d] transition shadow-lg"
               >
                 Iniciar sesión
               </button>

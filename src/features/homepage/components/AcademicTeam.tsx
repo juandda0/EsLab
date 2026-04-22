@@ -1,20 +1,23 @@
 import React from "react";
+import teonilaPhoto from "../../../assets/Teonila Aguilar Gimenez.jpg";
+import jairoPhoto from "../../../assets/Jairo Arturo Angel Guzman.jpg";
+import juanDiegoPhoto from "../../../assets/Juan Diego Diaz Avendaño.webp";
 
 const team = [
   { 
-    name: "Ricardo Guzmán", 
-    role: " Jefe Departamento de Matemáticas y Estadística", 
-    img: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-4.0.3&ixid=&auto=format&fit=crop&w=300&q=80" 
+    name: "Teonila Aguilar Gimenez", 
+    role: "Jefe Departamento de Geografía y Medio Ambiente", 
+    img: teonilaPhoto 
   },
   { 
-    name: "Dra. Ana Gómez", 
-    role: "Investigadora principal", 
-    img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&ixid=&auto=format&fit=crop&w=300&q=80" 
+    name: "Jairo Arturo Angel Guzman", 
+    role: "Investigador Principal", 
+    img: jairoPhoto 
   },
   { 
     name: "Juan Diego Diaz Avendaño", 
     role: "Asistente de sistemas", 
-    img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=&auto=format&fit=crop&w=300&q=80" 
+    img: juanDiegoPhoto 
   },
 ];
 

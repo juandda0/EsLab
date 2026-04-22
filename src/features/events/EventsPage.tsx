@@ -28,12 +28,16 @@ const EventsPage: React.FC = () => {
             )}
 
             {/* Cabecera visual */}
-            <div className="bg-gray-50 py-12 border-b border-gray-200">
+            <div className="bg-[#f5f5f7] py-24 border-b border-[#d2d2d7]/50">
                 <div className="max-w-6xl mx-auto px-6">
-                    <h1 className="text-4xl font-bold text-gray-900">Agenda Académica</h1>
-                    <p className="text-gray-600 mt-2 text-lg">
-                        Encuentros, conferencias y presentación de proyectos
-                    </p>
+                    <div className="flex flex-col md:flex-row justify-between items-start gap-6">
+                        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-[#1d1d1f] leading-tight max-w-2xl">
+                            Agenda Académica <br /> y Eventos
+                        </h1>
+                        <p className="text-[#86868b] text-xl font-medium max-w-sm md:pt-4">
+                            Encuentros, conferencias y presentación de proyectos estratégicos de la Universidad de Córdoba.
+                        </p>
+                    </div>
                 </div>
             </div>
 

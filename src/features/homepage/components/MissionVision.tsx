@@ -24,7 +24,7 @@ const MissionVision: React.FC = () => {
             </h3>
             <p className="text-2xl md:text-3xl font-bold text-[#1d1d1f] leading-snug tracking-tight">
               Formar profesionales con alto rigor científico capaces de aplicar
-              analítica avanzada y estadística en la resolución de desafíos regionales.
+              analítica avanzada y análisis geoespacial en la resolución de desafíos regionales.
             </p>
           </div>
 
