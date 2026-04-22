@@ -45,10 +45,11 @@ const navLinks: NavLink[] = [
     children: [
       {
         items: [
-          { title: "Modelos mixtos", url: "/" },
-          { title: "Análisis parcial", url: "/" },
-          { title: "Analítica de Datos", url: "/" },
-          { title: "Inteligencia Artificial", url: "/" },
+          { title: "Estadística Espacial y Geoestadística", url: "/" },
+          { title: "Modelación Predictiva Geoespacial (GeoAI)", url: "/" },
+          { title: "Análisis Urbano y Territorial", url: "/" },
+          { title: "Ambiente, Sostenibilidad y Cambio Climático", url: "/" },
+          { title: "Big Data Geoespacial y Sistemas de Información", url: "/" },
         ],
       },
     ],

@@ -29,7 +29,7 @@ const CordobaStatistics: React.FC<Props> = ({ categoria, color }) => {
   });
 
   const total = municipiosCordoba.reduce((acc, m) => acc + getValor(m, categoria), 0);
-  
+
   // Data simulada para replicar el Dashboard ANSV
   const monthlyData = [
     { name: 'Ene', value: Math.round(total * 0.45) },
@@ -68,7 +68,7 @@ const CordobaStatistics: React.FC<Props> = ({ categoria, color }) => {
 
   return (
     <div className="mt-12 space-y-6">
-      
+
       {/* ── SECCIÓN DE FILTROS ── */}
       <div className="bg-[#1d1d1f] p-8 rounded-3xl shadow-2xl flex flex-col lg:flex-row gap-8 items-center border border-white/5">
         <div className="flex-1 grid grid-cols-2 md:grid-cols-3 gap-6 w-full">
@@ -89,7 +89,7 @@ const CordobaStatistics: React.FC<Props> = ({ categoria, color }) => {
           ))}
         </div>
         <div className="flex flex-col items-center justify-center border-l border-white/10 pl-10 hidden lg:flex">
-          <div className="text-white text-3xl font-bold tracking-tighter">GeoLab</div>
+          <div className="text-white text-3xl font-bold tracking-tighter">LAGeo</div>
           <div className="text-white/30 text-[9px] uppercase font-black tracking-[0.3em] mt-1">OBSERVATORIO</div>
         </div>
       </div>
@@ -174,16 +174,16 @@ const CordobaStatistics: React.FC<Props> = ({ categoria, color }) => {
 
         {/* Panel informativo (No Aplica / Nota) */}
         <div className="lg:col-span-4 bg-[#f5f5f7] p-10 rounded-3xl flex flex-col items-center justify-center text-center">
-            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm mb-6">
-               <span className="text-2xl">⚡</span>
-            </div>
-            <h3 className="text-xs font-black text-[#1d1d1f] mb-3 uppercase tracking-[0.2em]">Cruce de variables</h3>
-            <p className="text-[11px] text-[#86868b] leading-relaxed max-w-[200px]">
-              El análisis cruzado de <span className="text-[#1d1d1f] font-bold">Actor vial vs Curso de vida</span> requiere datos de Medicina Legal específicos.
-            </p>
-            <div className="mt-6 px-4 py-2 border border-[#d2d2d7] rounded-full text-[9px] font-bold text-[#86868b] uppercase tracking-widest">
-               No Aplica para esta muestra
-            </div>
+          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm mb-6">
+            <span className="text-2xl">⚡</span>
+          </div>
+          <h3 className="text-xs font-black text-[#1d1d1f] mb-3 uppercase tracking-[0.2em]">Cruce de variables</h3>
+          <p className="text-[11px] text-[#86868b] leading-relaxed max-w-[200px]">
+            El análisis cruzado de <span className="text-[#1d1d1f] font-bold">Actor vial vs Curso de vida</span> requiere datos de Medicina Legal específicos.
+          </p>
+          <div className="mt-6 px-4 py-2 border border-[#d2d2d7] rounded-full text-[9px] font-bold text-[#86868b] uppercase tracking-widest">
+            No Aplica para esta muestra
+          </div>
         </div>
       </div>
 
@@ -212,7 +212,7 @@ const CordobaStatistics: React.FC<Props> = ({ categoria, color }) => {
                       <div className="flex items-center justify-end gap-3">
                         <span className="font-black text-[#1d1d1f]">{((getValor(m, categoria) / total) * 100).toFixed(1)}%</span>
                         <div className="w-12 h-1 bg-gray-100 rounded-full overflow-hidden">
-                           <div className="h-full bg-[#16a34a]" style={{ width: `${(getValor(m, categoria) / total) * 100}%` }}></div>
+                          <div className="h-full bg-[#16a34a]" style={{ width: `${(getValor(m, categoria) / total) * 100}%` }}></div>
                         </div>
                       </div>
                     </td>
@@ -234,8 +234,8 @@ const CordobaStatistics: React.FC<Props> = ({ categoria, color }) => {
                   <span className="text-xs font-black text-[#1d1d1f]">{item.val}%</span>
                 </div>
                 <div className="h-2 w-full bg-[#f5f5f7] rounded-full overflow-hidden">
-                  <div 
-                    className="h-full rounded-full transition-all duration-1000 ease-out" 
+                  <div
+                    className="h-full rounded-full transition-all duration-1000 ease-out"
                     style={{ width: `${item.val}%`, backgroundColor: item.color }}
                   ></div>
                 </div>
